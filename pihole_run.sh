@@ -2,12 +2,14 @@
 
 # https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
 
+source ./secret.sh
+
 podman stop pihole
 podman rm pihole
 podman run -d \
     --name pihole \
     -e TZ="Asia/Singapore" \
-    -e WEBPASSWORD="ankur" \
+    -e WEBPASSWORD="$PIHOLE_PASSWORD" \
     --dns=127.0.0.1 --dns=1.1.1.1 \
     -p 443:443 \
     -p 80:80 \
